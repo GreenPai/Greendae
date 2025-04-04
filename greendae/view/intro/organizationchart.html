@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/greendae/css/layout/organizationchartsub.css">
+    <link rel="stylesheet" href="/greendae/css/layout/layout.css">
+    <title>조직도</title>
+
+    <style>
+        
+
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const orgBoxes = document.querySelectorAll(".org_box[data-toggle='toggle']");
+
+    orgBoxes.forEach(function(box) {
+        box.addEventListener("click", function() {
+            const nextRow = box.parentElement.nextElementSibling;
+
+            if (nextRow) {
+                if (nextRow.classList.contains("show")) {
+                    nextRow.classList.remove("show");
+                    nextRow.classList.add("slide-up");
+                } else {
+                    nextRow.classList.add("show");
+                    nextRow.classList.remove("slide-up");
+                    nextRow.classList.add("slide-down");
+                }
+            }
+        });
+    });
+});
+    </script>
+   
+</head>
+<body>
+    <div id="wrapper">
+        <!-- 헤더 시작작-->
+        <header>
+            <div>
+                <div>
+                    <p>
+                        <a href="#">HOME |</a>
+                        <a href="#">사이드맵 |</a>
+                        <a href="#">로그인 |</a>
+                        <a href="#">학생지원</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <a href="#">
+                        <img src="/greendae/images/header_logo.png" alt="그린대학교">
+                    </a>
+                    <nav> 
+                        <ul>
+                            <li><a href="#">대학소개</a></li>
+                            <li><a href="#">입학안내</a></li>
+                            <li><a href="#">대학·대학원</a></li>
+                            <li><a href="#">학사안내</a></li>
+                            <li><a href="#">대학생활</a></li>
+                            <li><a href="#">커뮤니티</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- 헤더 끝-->
+        <!-- 메인 시작작-->
+        <main>
+            <div class="background">
+                <div>
+                    <span style="margin-top: 10px;">
+                        <img src="/greendae/images/ico-home.png" alt="HOME">
+                        <img src="/greendae/images/bg-path-arrow.png" alt=">">
+                        대학소개   
+                        <img src="/greendae/images/bg-path-arrow.png" alt=">">
+                        <span style="color: #071F4B;">조직도</span>
+                    </span>
+                </div>
+            </div>
+            <section class="content">
+                <!-- 왼쪽 사이드바 -->
+                <aside class="sidebar">
+                    <article class="side_content">             
+                        <div class="side_title">
+                            <p>대학소개</p>
+                        </div>            
+                        <a href="#">
+                            <div>총장 인사말</div>
+                        </a>
+                        <a href="#">
+                            <div>교육 이념</div>
+                        </a>
+                        <a href="#">
+                            <div>연혁</div>
+                        </a>
+                        <a href="#">
+                            <div class="choice">조직도</div>
+                        </a>
+                        <a href="#">
+                            <div>오시는길</div>
+                        </a>
+                    </article>
+                </aside>
+                <!-- 오른쪽 글 -->
+                 <div class="mains">
+                    <article class="main_content">
+                        <div class="main_title">
+                            <p>그린대학교 조직도</p>
+                        </div>
+                        <div class="main_content_detail">
+                            <div class="organization">
+                                </div>
+                                <!-- 총장 -->
+                                <div class="org_box top">
+                                    <p class="title">총장</p>
+                                    <p class="name">홍길동</p>
+                                </div>
+                                <div class="connector"></div>
+                    
+                                <!-- 부총장 -->
+                                <div class="middle_row">
+                                    <div class="org_box">
+                                        <p class="title">부총장</p>
+                                        <p class="name">이순신</p>
+                                    </div>
+                                </div>
+                                <div class="connector"></div>
+                    
+                                <!-- 추가된 부서들 -->
+                                <div class="bottom_row">
+                                    <div class="org_box">
+                                        <p class="title">학장</p>
+                                        <p class="name">강감찬</p>
+                                    </div>
+                                    <div class="org_box">
+                                        <p class="title">행정팀</p>
+                                        <p class="name">김유신</p>
+                                    </div>
+                                    <div class="org_box">
+                                        <p class="title">인사팀</p>
+                                        <p class="name">장보고</p>
+                                    </div>
+                                    <div class="org_box">
+                                        <p class="title">IT팀</p>
+                                        <p class="name">정약용</p>
+                                    </div>
+                                    <div class="org_box">
+                                        <p class="title">재무팀</p>
+                                        <p class="name">신사임당</p>
+                                    </div>
+                                    <div class="org_box">
+                                        <p class="title">마케팅팀</p>
+                                        <p class="name">윤봉길</p>
+                                    </div>
+                                </div>
+                    
+                                <!-- 테이블 추가 (부서 및 담당자) -->
+                                <div class="org_table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>부서</th>
+                                                <th>담당자</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>학장</td>
+                                                <td>안중근</td>
+                                            </tr>
+                                            <tr>
+                                                <td>행정팀</td>
+                                                <td>이성계</td>
+                                            </tr>
+                                            <tr>
+                                                <td>인사팀</td>
+                                                <td>유관순</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IT팀</td>
+                                                <td>박정희</td>
+                                            </tr>
+                                            <tr>
+                                                <td>재무팀</td>
+                                                <td>김홍도</td>
+                                            </tr>
+                                            <tr>
+                                                <td>마케팅팀</td>
+                                                <td>장영실</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                    
+                                <!-- 더 많은 부서 추가 가능 -->
+                                <div class="org_table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>부서</th>
+                                                <th>담당자</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>디자인팀</td>
+                                                <td>안창호</td>
+                                            </tr>
+                                            <tr>
+                                                <td>영업팀</td>
+                                                <td>허균</td>
+                                            </tr>
+                                            <tr>
+                                                <td>HR팀</td>
+                                                <td>김성수</td>
+                                            </tr>
+                                            <tr>
+                                                <td>교육팀</td>
+                                                <td>정주영</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                 </div>
+                   
+                 </div>
+        </main>
+        <!-- 메인 끝-->
+        <!-- 푸터 시작작-->
+        <footer>
+            <div>
+                <div>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">통합정보시스템</a></li>
+                        <li><a href="#">학사일정</a></li>
+                        <li><a href="#">주요인원 연락처</a></li>
+                        <li><a href="#">교내공지사항</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="/greendae/images/footer_logo.png" alt="그린대학교">
+                    <p>
+                        그린대학교 <br>
+                        [12345] 부산광역시 부산진구 부전대로 123 그린대학교 / 대표전화 : 051-123-1000 / <br>
+                        입학안내 : 051-123-1302 팩스 : 051-123-3333
+
+                        <br><br>
+                        copyright ©Green University All rights reserved.
+                    </p>
+                    <div>
+                        <p>주요사이트  
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ▾</p>
+                    </div>              
+                </div>
+            </div>
+        </footer>
+        <!-- 푸터 끝-->
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const orgBoxes = document.querySelectorAll(".org_box[data-toggle='toggle']");
+
+            orgBoxes.forEach(function(box) {
+                box.addEventListener("click", function() {
+                    const nextRow = box.parentElement.nextElementSibling;
+
+                    if (nextRow) {
+                        if (nextRow.classList.contains("show")) {
+                            nextRow.classList.remove("show");
+                            nextRow.classList.add("slide-up");
+                        } else {
+                            nextRow.classList.add("show");
+                            nextRow.classList.remove("slide-up");
+                            nextRow.classList.add("slide-down");
+                        }
+                    }
+                });
+            });
+        });ㄴ
+    </script>
+</body>
+</html>

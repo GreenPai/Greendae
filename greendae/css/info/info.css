@@ -1,0 +1,61 @@
+
+
+/* 메인 내용 부분*/
+
+.social_tit{
+    width: 595px;
+    height: 290px;
+    top: 148px;
+    left: 60px;
+}
+
+.social_tit > p{
+    font-size: 16px; 
+    color: #5b6774; 
+    line-height: 24px;
+}
+
+.social_tit > p > span {
+    font-size: 26px; 
+    color: #3b88d4;
+    margin-top: 15px; 
+    margin-bottom: 15px;  
+    display: inline-block;
+
+}
+
+.main_content_detail > p {
+    font-size: 18px; 
+    color: #145074;
+    margin-bottom: 13px;
+}
+
+
+.main_content_detail > table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: 2px solid #071F4B;
+}
+
+.main_content_detail > table tr {}
+.main_content_detail > table > caption {
+    text-align: left;
+    margin-bottom: 6px;
+}
+.main_content_detail > table tr > th {
+    width: auto;
+    height: 40px;
+    background: #e5ecef;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+}
+.main_content_detail > table tr > td {
+    width: auto;
+    height: 40px;
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    text-align: center;
+}
+

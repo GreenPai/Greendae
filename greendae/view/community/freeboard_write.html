@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 > 자유게시판 글쓰기</title>
+    <link rel="stylesheet" href="/greendae/css/layout/layout.css">
+    <link rel="stylesheet" href="/greendae/css/community/freeboard_write.css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- 헤더 시작작-->
+        <header>
+            <div>
+                <div>
+                    <p>
+                        <a href="#">HOME |</a>
+                        <a href="#">사이드맵 |</a>
+                        <a href="#">로그인 |</a>
+                        <a href="#">학생지원</a>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <a href="#">
+                        <img src="/greendae/images/header_logo.png" alt="그린대학교">
+                    </a>
+                    <nav> 
+                        <ul>
+                            <li><a href="#">대학소개</a></li>
+                            <li><a href="#">입학안내</a></li>
+                            <li><a href="#">대학·대학원</a></li>
+                            <li><a href="#">학사안내</a></li>
+                            <li><a href="#">대학생활</a></li>
+                            <li><a href="#">커뮤니티</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- 헤더 끝-->
+        <!-- 메인 시작작-->
+        <main>
+            <div class="background">
+                <div>
+                    <span style="margin-top: 10px;">
+                        <img src="/greendae/images/ico-home.png" alt="HOME">
+                        <img src="/greendae/images/bg-path-arrow.png" alt=">">
+                        커뮤니티   
+                        <img src="/greendae/images/bg-path-arrow.png" alt=">">
+                        <span style="color: #071F4B;">자유게시판</span>
+                    </span>
+                </div>
+            </div>
+            <section class="content">
+                <!-- 왼쪽 사이드바 -->
+                <aside class="sidebar">
+                    <article class="side_content">             
+                        <div class="side_title">
+                            <p>커뮤니티</p>
+                        </div>            
+                        <a href="#">
+                            <div>공지사항</div>
+                        </a>
+                        <a href="#">
+                            <div>뉴스 및 칼럼</div>
+                        </a>
+                        <a href="#">
+                            <div>취업정보</div>
+                        </a>
+                        <a href="#">
+                            <div class="choice">자유게시판</div>
+                        </a>
+                        <a href="#">
+                            <div>질문과 답변</div>
+                        </a>
+                        <a href="#">
+                            <div>자료실</div>
+                        </a>
+                    </article>
+                </aside>
+                <!-- 오른쪽 글 -->
+                <article class="main_content">
+                    <div class="main_title">
+                        <p>자유게시판</p>
+                    </div>
+                    <div class="main_content_detail">
+                        <!-- 작성할 내용 시작-->    
+
+                        <section class="right_section">
+                            <article>
+                                
+            
+                                
+                                <form action="/farmStory/article/write.do" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="writer" value="${sessUser.uid}" readonly>
+                                    <table border="0" class="write_table">
+                                        <tbody>
+                                            <tr>
+                                                <th>제목</th>
+                                                <td>
+                                                    <input type="text" name="title" placeholder="제목을 입력하세요.">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>내용</th>
+                                                <td>
+                                                    <textarea name="content"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>파일</th>
+                                                <td>
+                                                    <p style="margin-bottom: 6px;">
+                                                        최대 2개 파일 첨부 가능, 각 파일당 최대 10MB까지 가능
+                                                    </p>
+                                                    <input type="file" name="file1">
+                                                    <input type="file" name="file2">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="float: right; margin-top: 10px;">
+                                        <input type="submit" value="작성완료" class="btn btnComplete" style=" border: 1px solid #3b3c3f; background-color:#4b545e ; color: #ffffff;">
+                                        <a href="/farmStory/article/list.do" class="btn btnCancel" >취소</a>
+                                      </div>
+                                </form>
+
+
+                    </div>  
+                </article>
+            </section>
+        </main>
+        <!-- 메인 끝-->
+        <!-- 푸터 시작작-->
+        <footer>
+            <div>
+                <div>
+                    <ul>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">통합정보시스템</a></li>
+                        <li><a href="#">학사일정</a></li>
+                        <li><a href="#">주요인원 연락처</a></li>
+                        <li><a href="#">교내공지사항</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="/greendae/images/footer_logo.png" alt="그린대학교">
+                    <p>
+                        그린대학교 <br>
+                        [12345] 부산광역시 부산진구 부전대로 123 그린대학교 / 대표전화 : 051-123-1000 / <br>
+                        입학안내 : 051-123-1302 팩스 : 051-123-3333
+
+                        <br><br>
+                        copyright ©Green University All rights reserved.
+                    </p>
+                    <div>
+                        <p>주요사이트  
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ▾</p>
+                    </div>              
+                </div>
+            </div>
+        </footer>
+        <!-- 푸터 끝-->
+    </div>
+</body>
+</html>
