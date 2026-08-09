@@ -35,16 +35,16 @@ spring:
         version: ${version}
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        password: Qwerty123@
-        url: jdbc:mysql://13.209.74.140:3306/greendae
-        username: greendae
+        password: fdsa33143!@
+        url: jdbc:mysql://127.0.0.1:3306/greendae
+        username: root
     devtools:
         livereload:
             enabled: true
     jpa:
         database: mysql
         hibernate:
-            ddl-auto: none
+            ddl-auto: update
             naming:
                 physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         properties:
