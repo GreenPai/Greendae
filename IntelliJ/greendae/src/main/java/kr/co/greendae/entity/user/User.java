@@ -22,9 +22,11 @@ public class User {
     private String email;   // 이메일
     private String hp;      // 전화번호
     private String role;    // 역할(관리자, 학생, 교사)
+
     private String regip;     // IP주소
     private String addr1;   // 주소
     private String addr2;   // 자세한 주소
+
     private String ssn;     // 주민번호
     private String ename;   // 영문명
     private String gender;  // 성

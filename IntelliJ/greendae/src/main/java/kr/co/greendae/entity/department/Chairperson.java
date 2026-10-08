@@ -15,8 +15,13 @@ public class Chairperson {
     // 학과장 테이블
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
     private String name;
+
+    public Chairperson(String name){
+        this.name = name;
+    }
     
 
 }

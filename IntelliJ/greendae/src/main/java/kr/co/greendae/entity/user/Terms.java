@@ -11,6 +11,7 @@ import lombok.*;
 @Entity
 @Table(name = "Terms")
 public class Terms {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
@@ -20,4 +21,11 @@ public class Terms {
 
     @Lob
     private String privacy;
+
+    public Terms(String terms, String privacy){
+        this.terms = terms;
+        this.privacy = privacy;
+    }
+
+
 }

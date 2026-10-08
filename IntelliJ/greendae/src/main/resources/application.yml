@@ -13,6 +13,8 @@ server:
     servlet:
         context-path: /
 spring:
+    profiles:
+      active: local
     servlet:
         multipart:
             location: uploads

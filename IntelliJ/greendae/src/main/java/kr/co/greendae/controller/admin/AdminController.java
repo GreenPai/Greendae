@@ -1,13 +1,11 @@
-package kr.co.greendae.controller;
+package kr.co.greendae.controller.admin;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.greendae.dto.college.CollegeDTO;
 import kr.co.greendae.dto.department.*;
 import kr.co.greendae.dto.page.PageRequestDTO;
 import kr.co.greendae.dto.support.LectureDTO;
-import kr.co.greendae.dto.support.RegisterDTO;
 import kr.co.greendae.dto.support.StudentDTO;
-import kr.co.greendae.dto.support.pageRegister.PageResponseDTO;
 import kr.co.greendae.dto.user.PageProfessorResponseDTO;
 import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.ProfessorDTO;
