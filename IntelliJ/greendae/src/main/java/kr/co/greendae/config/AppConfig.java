@@ -1,5 +1,6 @@
 package kr.co.greendae.config;
 
+import kr.co.greendae.aop.TimeTraceAop;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
@@ -24,5 +25,13 @@ public class AppConfig {
                 .setFieldMatchingEnabled(true);
 
         return modelMapper;
+    }
+
+    /**
+     * AOP관련 빈
+     */
+    // @Bean
+    public TimeTraceAop timeTraceAop(){
+        return new TimeTraceAop();
     }
 }
