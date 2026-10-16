@@ -21,4 +21,16 @@ public class DepartmentDTO {
     private int totalLecturers;     // 소속 강의 수
     private int totalProfessors;    // 소속 교수 수
 
+    public boolean isValid() {
+        if (college == null || college.isBlank()) return false;
+        if (deptName == null || deptName.isBlank()) return false;
+        if (deptEname == null || deptEname.isBlank()) return false;
+        if (establishedYear == null || establishedYear.isBlank()) return false;
+        if (deptHp == null || deptHp.isBlank()) return false;
+        if (deptOffice == null || deptOffice.isBlank()) return false;
+
+        return true;
+    }
+
+
 }

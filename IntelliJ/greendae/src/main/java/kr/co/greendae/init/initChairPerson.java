@@ -32,20 +32,20 @@ public class initChairPerson {
     @Transactional
     public void InitChairPerson(){
 
-        if(!chairPersonRepository.existsById(1)){
-            chairPersonRepository.saveAll(List.of(
-                    new Chairperson("김국어"),
-                    new Chairperson("김영어"),
-                    new Chairperson("김일어"),
-                    new Chairperson("김중어"),
-                    new Chairperson("김역사"),
-                    new Chairperson("김경제"),
-                    new Chairperson("김법학"),
-                    new Chairperson("김철학"),
-                    new Chairperson("김행정"),
-                    new Chairperson("김사회")
-            ));
-        }
+//        if(!chairPersonRepository.existsById(1)){
+//            chairPersonRepository.saveAll(List.of(
+//                    new Chairperson("김국어"),
+//                    new Chairperson("김영어"),
+//                    new Chairperson("김일어"),
+//                    new Chairperson("김중어"),
+//                    new Chairperson("김역사"),
+//                    new Chairperson("김경제"),
+//                    new Chairperson("김법학"),
+//                    new Chairperson("김철학"),
+//                    new Chairperson("김행정"),
+//                    new Chairperson("김사회")
+//            ));
+//        }
     }
 
 

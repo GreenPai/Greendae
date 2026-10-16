@@ -1,4 +1,4 @@
-package kr.co.greendae.controller;
+package kr.co.greendae.controller.user;
 
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -109,6 +109,9 @@ public class UserController {
         return "redirect:/index";
     }
 
+    /**
+     * 아이디 찾기
+     */
     @GetMapping("/findid")
     public String findid(){
         return "/user/findid";
@@ -116,6 +119,7 @@ public class UserController {
 
     @PostMapping("/findid")
     public ResponseEntity<?> findId(@RequestBody Map<String, String> map, HttpSession session) {
+
         String userName = map.get("name");  // 사용자가 입력한 이름
         String userEmail = map.get("email");  // 사용자가 입력한 이메일
 

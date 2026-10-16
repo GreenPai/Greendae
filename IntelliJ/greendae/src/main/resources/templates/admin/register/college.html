@@ -90,16 +90,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>설립연도</td>
-                                    <td> <input type="date" name="date" style="float: left;" required></td>
-                                    <td>학과장</td>
-                                    <td>
-                                        <select name="deptChair" >
-                                            <option th:each="chairPersonDTO : ${chairPersonDTOS}" th:value="${chairPersonDTO.name}">[[${chairPersonDTO.name}]]</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>학과연락처</td>
                                     <td>
                                         <input type="text" name="deptHp" class="ipt1" placeholder="학과 연락처 입력" required>
@@ -108,6 +98,12 @@
                                     <td>
                                         <input type="text" name="deptOffice" class="ipt1" placeholder="인문관 3층 306호" required>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>설립연도</td>
+                                    <td> <input type="date" name="date" style="float: left;" required></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
 
                             </table>

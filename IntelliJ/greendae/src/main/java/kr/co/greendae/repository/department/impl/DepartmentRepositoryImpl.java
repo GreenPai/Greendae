@@ -53,7 +53,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepositoryCustom {
         if(searchType.equals("college")){
             expression = qDepartment.college.contains(keyword);
         }else if(searchType.equals("chair")){
-            expression = qDepartment.deptChair.contains(keyword);
+            // expression = qDepartment.deptChair.contains(keyword);
         }else if(searchType.equals("department")){
             expression = qDepartment.deptName.contains(keyword);
         }

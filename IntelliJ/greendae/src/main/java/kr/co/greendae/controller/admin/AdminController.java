@@ -10,6 +10,7 @@ import kr.co.greendae.dto.user.PageProfessorResponseDTO;
 import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.ProfessorDTO;
 import kr.co.greendae.dto.user.UserDTO;
+import kr.co.greendae.entity.user.Role;
 import kr.co.greendae.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,10 +44,10 @@ public class AdminController {
     public String college(Model model){
 
         List<CollegeDTO> collegeDTOS = adminService.findAllCollege();
-        List<ChairPersonDTO> chairPersonDTOS = adminService.findAllChairPerson();
-
         model.addAttribute("collegeDTOS",collegeDTOS);
-        model.addAttribute("chairPersonDTOS",chairPersonDTOS);
+
+        //List<ChairPersonDTO> chairPersonDTOS = adminService.findAllChairPerson();
+        //model.addAttribute("chairPersonDTOS",chairPersonDTOS);
 
         return "/admin/register/college";
     }
@@ -55,11 +56,19 @@ public class AdminController {
     public String college(CollegeDTO collageDTO){
 
         log.info("college register : collageDTO={}", collageDTO);
+
+        // 만약 정보가 정확하지 않을 때 돌려보내기
+        if(!collageDTO.isValid()){
+            log.info("오류 발생");
+            return "redirect:/admin/college/register";
+        }
+
         // 이미지 등록 서비스 호출
         adminService.uploadImage(collageDTO);
+
         adminService.save(collageDTO);
 
-        return "redirect:/admin/main";
+        return "redirect:/admin/college/register";
     }
 
     @PostMapping("/department/register")
@@ -69,10 +78,16 @@ public class AdminController {
 
         departmentDTO.setEstablishedYear(String.valueOf(date.getYear()));
 
+        if(!departmentDTO.isValid()){
+            log.info("학과 등록에 실패했습니다.");
+            return "redirect:/admin/college/register";
+        }
+
         // 최신 학과번호 추출
         int deptNo = adminService.getMaxDepNo();
         departmentDTO.setDeptNo(deptNo);
 
+        // 등록
         adminService.register(departmentDTO);
 
         return "redirect:/admin/college/register";
@@ -111,7 +126,7 @@ public class AdminController {
         String[] passStr = userDTO.getSsn().split("-");
         String pass = passwordEncoder.encode(passStr[1]); ;
         userDTO.setPass(pass);
-        userDTO.setRole("Professor");
+        userDTO.setRole(Role.ADMIN);
         userDTO.setRegip(req.getRemoteAddr());
 
         // User 테이블에 저장 - code는 교수번호
@@ -159,7 +174,7 @@ public class AdminController {
         String[] passStr = userDTO.getSsn().split("-");
         String pass = passwordEncoder.encode(passStr[1]); ;
         userDTO.setPass(pass);
-        userDTO.setRole("Student");
+        userDTO.setRole(Role.STUDENT);
         userDTO.setRegip(req.getRemoteAddr());
 
         // User 테이블에 저장 - code는 학생번호

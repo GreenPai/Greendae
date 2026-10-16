@@ -44,7 +44,17 @@ public class Professor {
     private String status;
 
     // 직위 (정교수, 조교수, 부교수)
-    private String position;
+    // private String position;
+
+    /**
+     *  PROFESSOR,  // 정교수
+     *  ASSOCIATE,  // 부교수
+     *  ASSISTANT   // 조교수
+     */
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 30)
+    private Position position;
 
     @PrePersist
     public void prePersist(){
@@ -53,7 +63,7 @@ public class Professor {
         }
 
         if(this.position == null){
-            this.position = "정교수";
+            this.position = Position.PROFESSOR;
         }
     }
 

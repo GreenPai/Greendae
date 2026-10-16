@@ -21,7 +21,6 @@ public class User {
     private String name;    // 이름
     private String email;   // 이메일
     private String hp;      // 전화번호
-    private String role;    // 역할(관리자, 학생, 교사)
 
     private String regip;     // IP주소
     private String addr1;   // 주소
@@ -32,6 +31,12 @@ public class User {
     private String gender;  // 성
     private String nationality; // 국적
     private String zip;         // 우편번호
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Role role;
+
+    //private String role;    // 역할(관리자, 학생, 교사)
 
     @CreationTimestamp
     private LocalDateTime regDate; // 가입일자

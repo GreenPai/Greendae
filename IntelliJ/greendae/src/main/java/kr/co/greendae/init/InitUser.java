@@ -2,6 +2,7 @@ package kr.co.greendae.init;
 
 import jakarta.annotation.PostConstruct;
 import kr.co.greendae.dto.user.UserDTO;
+import kr.co.greendae.entity.user.Role;
 import kr.co.greendae.entity.user.Terms;
 import kr.co.greendae.repository.user.TermsRepository;
 import kr.co.greendae.repository.user.UserRepository;
@@ -40,12 +41,12 @@ public class InitUser {
                     .name("관리자")
                     .email("admin@naver.com")
                     .hp("010-1234-2512")
-                    .role("Admin")
+                    .role(Role.ADMIN)
                     .zip("12345")
                     .addr1("주소")
                     .addr2("상세주소")
                     .ssn("914712-1241752")
-                    .ename("amdin")
+                    .ename("Admin")
                     .gender("male")
                     .nationality("한국")
                     .build();

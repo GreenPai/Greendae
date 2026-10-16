@@ -2,6 +2,7 @@ package kr.co.greendae.entity.department;
 
 import jakarta.persistence.*;
 import kr.co.greendae.entity.college.College;
+import kr.co.greendae.entity.user.Professor;
 import lombok.*;
 
 @Data
@@ -17,11 +18,9 @@ public class Chairperson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
-    private String name;
 
-    public Chairperson(String name){
-        this.name = name;
-    }
-    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "proNo")
+    private Professor professor;
 
 }

@@ -8,8 +8,8 @@
                 <a th:href="@{/}" style="white-space: pre;">HOME     |</a>
                 <a th:href="@{/intro/location}" style="white-space: pre;">사이드맵     |</a>
                 <a th:href="@{/user/login}" sec:authorize="isAnonymous()" style="white-space: pre;">로그인     |</a>
-                <a th:href="@{/support/register}" sec:authorize="hasRole('Student')" style="white-space: pre;">학생지원     |</a>
-                <a th:href="@{/admin/main}" sec:authorize="hasRole('Admin')" style="white-space: pre;">관리자     |</a>
+                <a th:href="@{/support/register}" sec:authorize="hasRole('STUDENT')" style="white-space: pre;">학생지원     |</a>
+                <a th:href="@{/admin/main}" sec:authorize="hasRole('ADMIN')" style="white-space: pre;">관리자     |</a>
                 <a th:href="@{/user/logout}" sec:authorize="isAuthenticated()" style="white-space: pre;">로그아웃     |</a>
             </p>
         </div>

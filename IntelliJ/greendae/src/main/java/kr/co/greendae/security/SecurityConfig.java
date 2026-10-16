@@ -41,16 +41,16 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/admin/**").hasRole("Admin")
-                .requestMatchers("/support/**").hasAnyRole("Student", "Professor" ,"Admin")
-                .requestMatchers("/community/notice/write").hasAnyRole("Admin")
-                .requestMatchers("/community/news/write").hasAnyRole("Admin")
-                .requestMatchers("/community/employment/write").hasAnyRole("Admin")
-                .requestMatchers("/community/data/write").hasAnyRole("Admin")
-                .requestMatchers("/academic/acanotice/write").hasAnyRole("Admin")
-                .requestMatchers("/admission/adnotice/write").hasAnyRole("Admin")
-                .requestMatchers("/admission/freeboard/write").hasAnyRole("Admin", "Normal","Professor","Student")
-                .requestMatchers("/*/qna/write").hasAnyRole("Admin", "Normal","Professor","Student")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/support/**").hasAnyRole("STUDENT", "PROFESSOR" ,"ADMIN")
+                .requestMatchers("/community/notice/write").hasAnyRole("ADMIN")
+                .requestMatchers("/community/news/write").hasAnyRole("ADMIN")
+                .requestMatchers("/community/employment/write").hasAnyRole("ADMIN")
+                .requestMatchers("/community/data/write").hasAnyRole("ADMIN")
+                .requestMatchers("/academic/acanotice/write").hasAnyRole("ADMIN")
+                .requestMatchers("/admission/adnotice/write").hasAnyRole("ADMIN")
+                .requestMatchers("/admission/freeboard/write").hasAnyRole("ADMIN", "NORMAL","PROFESSOR","STUDENT")
+                .requestMatchers("/*/qna/write").hasAnyRole("ADMIN", "NORMAL","PROFESSOR","STUDENT")
 
                 .anyRequest().permitAll());
 

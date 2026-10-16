@@ -1,8 +1,10 @@
 package kr.co.greendae.dto.college;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +21,19 @@ public class CollegeDTO {
     private MultipartFile image;
     private String oName;
     private String sName;
-    
+
+    public boolean isValid() {
+        if (name == null || name.isBlank()) return false;
+        if (engName == null || engName.isBlank()) return false;
+        if (title == null || title.isBlank()) return false;
+        if (content == null || content.isBlank()) return false;
+
+        if (image == null || image.isEmpty()){
+            log.info("파일에 대한 오류가 발생했습니다.");
+            return false;
+        }
+
+        return true;
+    }
 
 }

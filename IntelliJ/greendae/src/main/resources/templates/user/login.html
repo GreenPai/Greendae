@@ -36,53 +36,47 @@
 
                     <div style="width: 495px; margin-bottom: 20px;">
                         <p style="color:#3F97F6; font-size: 20px; font-style: normal; font-weight: 500; line-height: 24px; width: 61px; height: 30px;">LOGIN</p>
-                        <p style="color:#3F97F6; font-size: 15px; font-weight: 350; line-height: 24px; width: 345px; height: 24px; margin-bottom: 20px;">로그인을 하시면 더 다양한 서비스를 받으실 수 있습니다.</p>
-                        <input type="radio" id="student" name="userType" value="student" class="custom-checkbox">
-                        <label for="student">학부생</label>
+                        <p style="color:#3F97F6; font-size: 15px; font-weight: 350; line-height: 24px; width: 355px; height: 24px; margin-bottom: 20px;">로그인을 하시면 더 다양한 서비스를 받으실 수 있습니다.</p>
+                    </div>
 
-                        <input type="radio" id="staff" name="userType" value="staff" class="custom-checkbox">
-                        <label for="staff">교직원 </label>
+                    <div>
+                        <form method="post">
+                            <label for="uid"></label>
+                            <input class="logins" type="text" id="uid" name="uid" placeholder="아이디" required>
 
-                        <input type="radio" id="Normal" name="userType" value="Normal" class="custom-checkbox">
-                        <label for="Normal">일반인</label>
+                            <label for="pass"></label>
+                            <input class="logins" style="margin-top: 10px;" type="password" id="pass" name="pass" placeholder="비밀번호" required>
 
+                            <button class="btn1"
+                                    type="submit" id="login">로그인</button>
+
+                        </form>
+
+                        <div style="width:495px;">
                             <a href="/user/findpassword" style="float: right;"><span>비밀번호 찾기</span></a>
                             <a href="/user/findid" style="float: right;"><span>아이디 찾기/</span></a>
-                            <a href="/user/termsandconditions" style="float: right;"><span>회원가입/</span></a>
-
-                    </div>
-
-                    <div>
-                    <form method="post">
-                        <label for="uid"></label>
-                        <input class="logins" type="text" id="uid" name="uid" placeholder="아이디" required>
-
-                        <label for="pass"></label>
-                        <input class="logins" style="margin-top: 10px;" type="password" id="pass" name="pass" placeholder="비밀번호" required>
-
-                        <button class="btn1"
-                                type="submit" id="login">로그인</button>
-
-                    <div>
-                        <p style="color: #0067B3; font-size: 18px; font-weight: 500; margin-top: 25px;">
-                            <img src="/images/bullet-h4.png" alt="" style="margin-right: 4px; margin-bottom: 3px; ">
-                            아이디,비밀번호 안내
-                        </p>
-
-                        <div class="text1" style="margin-top: 10px;">
-                            <p>- 대학 구성원(학원, 교직원)은 회원가입없이 교번, 학번을 사용하여 로그인이 가능합니다.</p>
-                            <p>- 비밀번호 분실시 학생지원팀에 방문하셔서 초기화하실 수 있습니다.</p>
-                            <p>- 재학, 휴학, 졸업 유예인 경우 사용하실 수 있으며, 매년 학적변동이 일어날 때 상태가 변경됩니다.</p>
-                            <p>- 문의사항이 있으시면 담당자(055-123-4567)에게 전화주세요</p>
                         </div>
 
-                    </div>
+                            <div>
+                                <p style="color: #0067B3; font-size: 18px; font-weight: 500; margin-top: 25px;">
+                                    <img src="/images/bullet-h4.png" alt="" style="margin-right: 4px; margin-bottom: 3px; ">
+                                    아이디,비밀번호 안내
+                                </p>
 
-            </div>
+                                <div class="text1" style="margin-top: 10px;">
+                                    <p>- 대학 구성원(학원, 교직원)은 회원가입없이 교번, 학번을 사용하여 로그인이 가능합니다.</p>
+                                    <p>- 비밀번호 분실시 학생지원팀에 방문하셔서 초기화하실 수 있습니다.</p>
+                                    <p>- 재학, 휴학, 졸업 유예인 경우 사용하실 수 있으며, 매년 학적변동이 일어날 때 상태가 변경됩니다.</p>
+                                    <p>- 문의사항이 있으시면 담당자(055-123-4567)에게 전화주세요</p>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
 
                 </article>
             </section>
-            </form>
+
 
 
         </main>
