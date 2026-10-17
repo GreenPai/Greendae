@@ -20,7 +20,7 @@ public class Student {
     @Id
     private String stdNo;           //학번
 
-    @OneToOne
+    @OneToOne//(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "uid")
     private User user;
 

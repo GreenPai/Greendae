@@ -42,6 +42,8 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath pass = createString("pass");
 
+    public final QProfessor professor;
+
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);
 
     public final StringPath regip = createString("regip");
@@ -74,6 +76,7 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.professor = inits.isInitialized("professor") ? new QProfessor(forProperty("professor"), inits.get("professor")) : null;
         this.student = inits.isInitialized("student") ? new QStudent(forProperty("student"), inits.get("student")) : null;
     }
 

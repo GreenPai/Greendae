@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"student", "professor"})
 @Builder
 @Entity
 @Table(name = "User")
@@ -43,8 +43,11 @@ public class User {
 
     private LocalDateTime leaveDate; //탈퇴일자
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Student student;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Professor professor;
 
     /*
 
