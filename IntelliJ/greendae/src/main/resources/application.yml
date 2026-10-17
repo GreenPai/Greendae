@@ -34,7 +34,7 @@ spring:
                         enable: true
     application:
         name: greendae
-        version: ${version}
+        version: 1.0.0-RELEASE
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: fdsa33143!@
