@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Profile("local")
 @Component
 @RequiredArgsConstructor
-public class InitTerm {
+public class    InitTerm {
 
     private final TermsRepository termsRepository;
 

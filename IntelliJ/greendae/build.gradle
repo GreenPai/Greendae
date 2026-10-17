@@ -11,7 +11,12 @@ version = '1.0.0-RELEASE'
 // application.properties 파일 참조를 위한 스크립트
 processResources {
     filesMatching("application.yml") {
-        expand(project.properties)
+        expand(project.properties + [
+                MAIL_USERNAME: System.getenv('MAIL_USERNAME'),
+                MAIL_PASSWORD: System.getenv('MAIL_PASSWORD'),
+                DB_USERNAME  : System.getenv('DB_USERNAME'),
+                DB_PASSWORD  : System.getenv('DB_PASSWORD')
+        ])
     }
 }
 
