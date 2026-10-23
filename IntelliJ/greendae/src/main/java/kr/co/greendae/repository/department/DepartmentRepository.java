@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<Department,Integer>, DepartmentRepositoryCustom {
     Optional<Department> findFirstByOrderByDeptNoDesc();
 
-    List<Department> findAllByCollege(String name);
-
     Department findByDeptName(String departmentD);
+
+    List<Department> findAllByCollege_Name(String name);
 }

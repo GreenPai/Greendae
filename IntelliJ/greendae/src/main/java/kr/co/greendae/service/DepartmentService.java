@@ -23,7 +23,7 @@ public class DepartmentService {
 
     public List<DepartmentDTO> findDepartmentByCollege(String college) {
 
-        List<Department> collegeList = departmentRepository.findAllByCollege(college);
+        List<Department> collegeList = departmentRepository.findAllByCollege_Name(college);
         List<DepartmentDTO> departmentDTOS = new ArrayList<>();
         for (Department department : collegeList) {
             DepartmentDTO departmentDTO = modelMapper.map(department, DepartmentDTO.class);

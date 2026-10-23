@@ -26,7 +26,9 @@ public class Department {
     *   content : 소개 내용
     * */
 
-    private String college;
+    @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "collegeName")
+    private College college;
 
     private String deptName;       // 학과명
     private String deptEname;      // 영문명
@@ -35,9 +37,9 @@ public class Department {
     private String deptHp;         // 학과 연락처
     private String deptOffice;     // 학과 사무실
 
-    private int totalStudents;     // 소속 학생 수
-    private int totalLecturers;    // 소속 강의 수
-    private int totalProfessors;   // 소속 교수 수
+//    private int totalStudents;     // 소속 학생 수
+//    private int totalLecturers;    // 소속 강의 수
+//    private int totalProfessors;   // 소속 교수 수
 
     // private String deptChair;      // 학과장
 

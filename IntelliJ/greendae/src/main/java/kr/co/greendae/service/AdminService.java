@@ -149,7 +149,7 @@ public class AdminService {
 
     public List<DepartmentDTO> findAllDepartmentByName(String name) {
 
-        List<Department> departments = departmentRepository.findAllByCollege(name);
+        List<Department> departments = departmentRepository.findAllByCollege_Name(name);
         List<DepartmentDTO> departmentDTOS = new ArrayList<>();
 
         for (Department department : departments) {

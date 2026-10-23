@@ -42,6 +42,7 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prodNo")
     private Professor professor;         //지도교수
+
     private String stdStatus;       //재학상태
 
     @PrePersist

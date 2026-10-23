@@ -84,7 +84,7 @@ class ProfessorRepositoryTest {
         }
 
     }
-    
+
     /**
      * 유저 정보 저장
      */

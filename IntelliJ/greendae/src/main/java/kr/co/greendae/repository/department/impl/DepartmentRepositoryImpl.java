@@ -51,7 +51,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepositoryCustom {
         BooleanExpression expression = null;
 
         if(searchType.equals("college")){
-            expression = qDepartment.college.contains(keyword);
+            // expression = qDepartment.college.contains(keyword);
         }else if(searchType.equals("chair")){
             // expression = qDepartment.deptChair.contains(keyword);
         }else if(searchType.equals("department")){

@@ -20,6 +20,7 @@ public class College {
 
     @Id
     private String name;       // 대학 이름
+
     private String engName;    // 대학 영어 이름
     private String title;      // 소개 제목
     private String content;    // 소개 내용
