@@ -1,9 +1,8 @@
-package kr.co.greendae.init;
+package kr.co.greendae.init.user;
 
 import jakarta.annotation.PostConstruct;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.user.Role;
-import kr.co.greendae.entity.user.Terms;
 import kr.co.greendae.repository.user.TermsRepository;
 import kr.co.greendae.repository.user.UserRepository;
 import kr.co.greendae.service.UserService;

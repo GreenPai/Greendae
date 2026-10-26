@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="Lecture")
+//@Table(name="Lecture")
 public class Lecture {
 
     /*

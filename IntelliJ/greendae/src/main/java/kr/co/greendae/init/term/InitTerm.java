@@ -1,4 +1,4 @@
-package kr.co.greendae.init;
+package kr.co.greendae.init.term;
 
 import jakarta.annotation.PostConstruct;
 import kr.co.greendae.entity.user.Terms;
