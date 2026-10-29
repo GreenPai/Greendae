@@ -3,7 +3,6 @@ package kr.co.greendae.repository.support;
 import kr.co.greendae.entity.Lecture.Lecture;
 import kr.co.greendae.entity.Lecture.Register;
 import kr.co.greendae.entity.user.Student;
-import kr.co.greendae.repository.support.impl.RegisterRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,7 @@ import java.util.List;
 
 
 
-public interface RegisterRepository extends JpaRepository<Register, Integer> , RegisterRepositoryCustom {
+public interface RegisterRepository extends JpaRepository<Register, Integer>  {
     //Register_list 페이지에 출력할 정보 JOIN
 
     @Query("select (r.student.stdNo, r.lecture.lecNo, l.lecCredit, l.lecName, l.lecCate, l.lecGrade, l.professor, l.lecRoom, l.lecWeekday) from Register as r " +

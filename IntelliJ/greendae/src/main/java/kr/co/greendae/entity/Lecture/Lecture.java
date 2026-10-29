@@ -41,11 +41,13 @@ public class Lecture {
     @JoinColumn(name = "proNo")
     private Professor professor;  //담당교수
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subjectNo", nullable = false)
+    private Subject subject;
+
     private String lecMajor;
     private String lecClass;
 
-    private String lecName;  //과목명
-    private String lecCate;  //과목 구분(전공선택)
     private int lecGrade;    //학년
     private int lecCredit;   //학점
     private int lecStdTotal; //총 수강인원(추가)

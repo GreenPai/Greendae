@@ -70,7 +70,8 @@ public class SupportService {
         //페이징 처리를 위한 pageable 객체 생성
         Pageable pageable = pageRequestDTO.getPageable("no");
 
-        Page<Tuple> pageLecture = lectureRepository.searchLecturesByStdNoAndStdYear(pageRequestDTO, pageable, stdYear);
+        Page<Tuple> pageLecture = null;
+                //lectureRepository.searchLecturesByStdNoAndStdYear(pageRequestDTO, pageable, stdYear);
 
         //변환
         List<LectureDTO> lectureDTOList = pageLecture.getContent().stream().map(tuple -> {
@@ -98,7 +99,8 @@ public class SupportService {
         Pageable pageable = pageRequestDTO.getPageable("lecNo");
 
         // 페이징을 포함한 강의 목록 조회
-        Page<Tuple> pageLecture = lectureRepository.selectAllByStdNoAndStdYear(pageable, stdYear);
+        Page<Tuple> pageLecture = null;
+                //lectureRepository.selectAllByStdNoAndStdYear(pageable, stdYear);
 
         // 페이지 정보에서 강의 DTO 리스트 변환
         List<LectureDTO> lectureDTOList = pageLecture.getContent().stream()
@@ -123,78 +125,46 @@ public class SupportService {
 
     public RegisteredPageResponseDTO findRegisterByStdNo(RegisteredPageRequestDTO registeredPageRequestDTO, String stdNo) {
         //페이징
-        Pageable pageable = registeredPageRequestDTO.getPageable("no");
-
-        //페이징을 포함한 목록 조회
-        Page<Tuple> pageRegistered = registerRepository.findRegisterByStdNo(pageable, stdNo);
-
-        List<RegisterDTO> registerDTOList = pageRegistered.getContent().stream()
-                .map(tuple -> {
-                    Register register = tuple.get(0, Register.class);
-                    RegisterDTO registerDTO = modelMapper.map(register, RegisterDTO.class);
-
-                    registerDTO.setRegStdNo(register.getStudent().getStdNo());// 학생 번호
-                    registerDTO.setRegLecNo(register.getLecture().getLecNo());  // 강의 번호
-                    registerDTO.setLecCredit(register.getLecture().getLecCredit()); // 학점
-                    registerDTO.setLecName(register.getLecture().getLecName());  // 강의명
-                    registerDTO.setLecCate(register.getLecture().getLecCate());  // 강의 카테고리
-                    registerDTO.setLecGrade(register.getLecture().getLecGrade());  // 강의 학년
-                    registerDTO.setLecProName(register.getLecture().getProfessor().getUser().getName());  // 교수명
-                    registerDTO.setLecRoom(register.getLecture().getLecRoom());  // 강의실
-                    registerDTO.setLecWeekday(register.getLecture().getLecWeekday());
-
-                    return registerDTO;
-                })
-                .toList();
-
-        //전체 강의 수
-        int total = (int) pageRegistered.getTotalElements();
-
-        //페이지 DTO 반환
-         return RegisteredPageResponseDTO.builder()
-                 .pageRequestDTO(registeredPageRequestDTO)
-                 .dtoList(registerDTOList)
-                 .total(total)
-                 .build();
+//        Pageable pageable = registeredPageRequestDTO.getPageable("no");
+//
+//        //페이징을 포함한 목록 조회
+////        Page<Tuple> pageRegistered = registerRepository.findRegisterByStdNo(pageable, stdNo);
+//
+//        List<RegisterDTO> registerDTOList = pageRegistered.getContent().stream()
+//                .map(tuple -> {
+//                    Register register = tuple.get(0, Register.class);
+//                    RegisterDTO registerDTO = modelMapper.map(register, RegisterDTO.class);
+//
+//                    registerDTO.setRegStdNo(register.getStudent().getStdNo());// 학생 번호
+//                    registerDTO.setRegLecNo(register.getLecture().getLecNo());  // 강의 번호
+//                    registerDTO.setLecCredit(register.getLecture().getLecCredit()); // 학점
+//                    registerDTO.setLecName(register.getLecture().getLecName());  // 강의명
+//                    registerDTO.setLecCate(register.getLecture().getLecCate());  // 강의 카테고리
+//                    registerDTO.setLecGrade(register.getLecture().getLecGrade());  // 강의 학년
+//                    registerDTO.setLecProName(register.getLecture().getProfessor().getUser().getName());  // 교수명
+//                    registerDTO.setLecRoom(register.getLecture().getLecRoom());  // 강의실
+//                    registerDTO.setLecWeekday(register.getLecture().getLecWeekday());
+//
+//                    return registerDTO;
+//                })
+//                .toList();
+//
+//        //전체 강의 수
+//        int total = (int) pageRegistered.getTotalElements();
+//
+//        //페이지 DTO 반환
+//         return RegisteredPageResponseDTO.builder()
+//                 .pageRequestDTO(registeredPageRequestDTO)
+//                 .dtoList(registerDTOList)
+//                 .total(total)
+//                 .build();
+        return null;
     }
 
     public RegisteredPageResponseDTO findGradeByStdNo(RegisteredPageRequestDTO registeredPageRequestDTO, String stdNo) {
         //페이징
-        Pageable pageable = registeredPageRequestDTO.getPageable("no");
-
-        //페이징 포함 목록 조회
-        Page<Tuple> pageRegisteredGrade = registerRepository.findGradeByStdNo(pageable, stdNo);
-
-        List<RegisterDTO> gradeDTOList = pageRegisteredGrade.getContent().stream()
-                .map(tuple -> {
-                    Register register = tuple.get(0, Register.class);
-                    RegisterDTO registerDTO = modelMapper.map(register, RegisterDTO.class);
-                    String proNo = register.getLecture().getProfessor().getProNo();
-                    Professor professor = professorRepository.findById(proNo).get();
-
-                    registerDTO.setRegStdNo(register.getStudent().getStdNo());
-                    registerDTO.setRegLecNo(register.getLecture().getLecNo());
-                    registerDTO.setRegTotalScore(register.getRegTotalScore());
-                    registerDTO.setRegGradeScore(register.getRegGradeScore());
-                    registerDTO.setLecCredit(register.getLecture().getLecCredit());
-                    registerDTO.setLecName(register.getLecture().getLecName());
-                    registerDTO.setLecCate(register.getLecture().getLecCate());
-                    registerDTO.setLecGrade(register.getLecture().getLecGrade());
-                    registerDTO.setLecProName(professor.getUser().getName());
-
-                    return registerDTO;
-                })
-                .toList();
-
-        //전체 강의 수
-        int total = (int) pageRegisteredGrade.getTotalElements();
-
-        //페이지 DTO 반환
-        return RegisteredPageResponseDTO.builder()
-                .pageRequestDTO(registeredPageRequestDTO)
-                .dtoList(gradeDTOList)
-                .total(total)
-                .build();
+//
+        return null;
     }
 
     public List<StudentDTO> findRecordByStdNo(String stdNo) {
@@ -363,41 +333,41 @@ public class SupportService {
         Student student = studentRepository.findById(studentDTO.getStdNo()).get();
         // Student student = modelMapper.map(studentDTO, Student.class);
 
-        Register register = new Register();
-        register.setStudent(student);
-        register.setLecture(lecture);
-
-        String lecYear = lecture.getLecScheduleStart();
-        String[] strs = lecYear.split("-");
-
-        String year = strs[0];
-        String month = strs[1];
-
-        String regSemester = null;
-
-        if(month.equals("03") ||month.equals("04") || month.equals("05") || month.equals("06") ){
-            regSemester = "1학기";
-        }else{
-            regSemester = "2학기";
-        }
-
-        register.setRegSemester(regSemester);
-        register.setRegYear(year);
-
-        // 수강 등록하기
-        registerRepository.save(register);
-
-        // 수강 인원 수 더하기
-        // lecStdCount를 들고와서 +1하고 save하기
-        // lecture.set
-        int count = lecture.getLecStdCount();
-        lecture.setLecStdCount(count + 1);
-        lectureRepository.save(lecture);
-        
-        // 학생 총점 더하기
-        int score = lecture.getLecCredit();
-        student.setRegisterCredits(student.getRegisterCredits() + score);
-        studentRepository.save(student);
+//        Register register = new Register();
+//        register.setStudent(student);
+//        register.setLecture(lecture);
+//
+//        String lecYear = lecture.getLecScheduleStart();
+//        String[] strs = lecYear.split("-");
+//
+//        String year = strs[0];
+//        String month = strs[1];
+//
+//        String regSemester = null;
+//
+//        if(month.equals("03") ||month.equals("04") || month.equals("05") || month.equals("06") ){
+//            regSemester = "1학기";
+//        }else{
+//            regSemester = "2학기";
+//        }
+//
+//        register.setRegSemester(regSemester);
+//        register.setRegYear(year);
+//
+//        // 수강 등록하기
+//        registerRepository.save(register);
+//
+//        // 수강 인원 수 더하기
+//        // lecStdCount를 들고와서 +1하고 save하기
+//        // lecture.set
+//        int count = lecture.getLecStdCount();
+//        lecture.setLecStdCount(count + 1);
+//        lectureRepository.save(lecture);
+//
+//        // 학생 총점 더하기
+//        int score = lecture.getLecCredit();
+//        student.setRegisterCredits(student.getRegisterCredits() + score);
+//        studentRepository.save(student);
 
         return true;
     }
@@ -443,89 +413,89 @@ public class SupportService {
     public List<RecordDTO> calculateRecode(StudentDTO studentDTO) {
 
         List<RecordDTO> recordDTOS = new ArrayList<>();
-        Student student = studentRepository.findByStdNo(studentDTO.getStdNo());
-        int startYear = Integer.parseInt(student.getAdmission_year());
-        List<Register> re = registerRepository.findByStudent(student);
+//        Student student = studentRepository.findByStdNo(studentDTO.getStdNo());
+//        int startYear = Integer.parseInt(student.getAdmission_year());
+//        List<Register> re = registerRepository.findByStudent(student);
+//
+//        int grade = 1;
+//
+//        System.out.println(startYear);
+//
+//        // 학생 학번에도 연도 구분
+//        String semester = "시작";
+//        Boolean stop = true;
+//        while(stop){
+//
+//            RecordDTO recordDTO1 = new RecordDTO();
+//
+//            // 1학기 시작
+//            String year = String.valueOf(startYear);
+//
+//            semester = "1학기";
+//            List<Register> list = registerRepository.findByStudentAndRegSemesterAndRegYear(student, semester, year );
+//
+//            if(list.isEmpty()){
+//                break;
+//            }
+//
+//            // 데이터 수작업으로 넣기
+//            recordDTO1.setYear(year);
+//            recordDTO1.setGrade(grade);
+//            recordDTO1.setSemester(semester);
+//
+//            int score = 0;
+//            int major = 0;
+//            for(Register register : list){
+//                score += register.getLecture().getLecCredit();
+//                if(register.getLecture().getLecCate().contains("전공")){
+//                    major += register.getLecture().getLecCredit();
+//                }
+//            }
+//
+//            recordDTO1.setRegister(score);
+//            recordDTO1.setTotal(score);
+//            recordDTO1.setEtc(0);
+//            recordDTO1.setElective(0);
+//            recordDTO1.setAverage("4.5");
+//            recordDTO1.setMajor(major);
+//            recordDTOS.add(recordDTO1);
+//
+//            // 2학기 데이터 뿌리기
+//            semester = "2학기";
+//            List<Register> list2 = registerRepository.findByStudentAndRegSemesterAndRegYear(student, semester, year );
+//
+//            if(list2.isEmpty()){
+//                break;
+//            }
+//
+//            //데이터 삽입
+//            RecordDTO recordDTO2 = new RecordDTO();
+//            recordDTO2.setYear(year);
+//            recordDTO2.setGrade(grade);
+//            recordDTO2.setSemester(semester);
+//
+//            int score2 = 0;
+//            int major2 = 0;
+//
+//            for(Register register : list2){
+//                score2 += register.getLecture().getLecCredit();
+//                if(register.getLecture().getLecCate().contains("전공")){
+//                    major2 += register.getLecture().getLecCredit();
+//                }
+//            }
+//
+//            recordDTO2.setRegister(score2);
+//            recordDTO2.setTotal(score2);
+//            recordDTO2.setEtc(0);
+//            recordDTO2.setElective(0);
+//            recordDTO2.setAverage("4.5");
+//            recordDTO2.setMajor(major2);
+//
+//            recordDTOS.add(recordDTO2);
+//
+//            startYear += 1;
 
-        int grade = 1;
-
-        System.out.println(startYear);
-
-        // 학생 학번에도 연도 구분
-        String semester = "시작";
-        Boolean stop = true;
-        while(stop){
-
-            RecordDTO recordDTO1 = new RecordDTO();
-
-            // 1학기 시작
-            String year = String.valueOf(startYear);
-
-            semester = "1학기";
-            List<Register> list = registerRepository.findByStudentAndRegSemesterAndRegYear(student, semester, year );
-
-            if(list.isEmpty()){
-                break;
-            }
-
-            // 데이터 수작업으로 넣기
-            recordDTO1.setYear(year);
-            recordDTO1.setGrade(grade);
-            recordDTO1.setSemester(semester);
-
-            int score = 0;
-            int major = 0;
-            for(Register register : list){
-                score += register.getLecture().getLecCredit();
-                if(register.getLecture().getLecCate().contains("전공")){
-                    major += register.getLecture().getLecCredit();
-                }
-            }
-
-            recordDTO1.setRegister(score);
-            recordDTO1.setTotal(score);
-            recordDTO1.setEtc(0);
-            recordDTO1.setElective(0);
-            recordDTO1.setAverage("4.5");
-            recordDTO1.setMajor(major);
-            recordDTOS.add(recordDTO1);
-
-            // 2학기 데이터 뿌리기
-            semester = "2학기";
-            List<Register> list2 = registerRepository.findByStudentAndRegSemesterAndRegYear(student, semester, year );
-
-            if(list2.isEmpty()){
-                break;
-            }
-
-            //데이터 삽입
-            RecordDTO recordDTO2 = new RecordDTO();
-            recordDTO2.setYear(year);
-            recordDTO2.setGrade(grade);
-            recordDTO2.setSemester(semester);
-
-            int score2 = 0;
-            int major2 = 0;
-
-            for(Register register : list2){
-                score2 += register.getLecture().getLecCredit();
-                if(register.getLecture().getLecCate().contains("전공")){
-                    major2 += register.getLecture().getLecCredit();
-                }
-            }
-
-            recordDTO2.setRegister(score2);
-            recordDTO2.setTotal(score2);
-            recordDTO2.setEtc(0);
-            recordDTO2.setElective(0);
-            recordDTO2.setAverage("4.5");
-            recordDTO2.setMajor(major2);
-
-            recordDTOS.add(recordDTO2);
-
-            startYear += 1;
-
-       }
+//       }
 
         return recordDTOS;
         

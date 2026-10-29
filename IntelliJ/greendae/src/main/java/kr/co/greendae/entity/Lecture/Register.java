@@ -2,13 +2,14 @@ package kr.co.greendae.entity.Lecture;
 
 import jakarta.persistence.*;
 import kr.co.greendae.entity.user.Student;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+/**
+ * 수강신청 엔티티 :
+ * lecture
+ */
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Entity
@@ -19,7 +20,7 @@ public class Register {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int regNo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "regStdNo", referencedColumnName = "stdNo")
     private Student student;
 

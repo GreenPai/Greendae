@@ -24,8 +24,6 @@ public class QLecture extends EntityPathBase<Lecture> {
 
     public final StringPath book = createString("book");
 
-    public final StringPath lecCate = createString("lecCate");
-
     public final StringPath lecClass = createString("lecClass");
 
     public final StringPath lecContent = createString("lecContent");
@@ -39,8 +37,6 @@ public class QLecture extends EntityPathBase<Lecture> {
     public final NumberPath<Integer> lecLevel = createNumber("lecLevel", Integer.class);
 
     public final StringPath lecMajor = createString("lecMajor");
-
-    public final StringPath lecName = createString("lecName");
 
     public final StringPath lecNo = createString("lecNo");
 
@@ -62,6 +58,8 @@ public class QLecture extends EntityPathBase<Lecture> {
 
     public final kr.co.greendae.entity.user.QProfessor professor;
 
+    public final QSubject subject;
+
     public QLecture(String variable) {
         this(Lecture.class, forVariable(variable), INITS);
     }
@@ -81,6 +79,7 @@ public class QLecture extends EntityPathBase<Lecture> {
     public QLecture(Class<? extends Lecture> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.professor = inits.isInitialized("professor") ? new kr.co.greendae.entity.user.QProfessor(forProperty("professor"), inits.get("professor")) : null;
+        this.subject = inits.isInitialized("subject") ? new QSubject(forProperty("subject")) : null;
     }
 
 }

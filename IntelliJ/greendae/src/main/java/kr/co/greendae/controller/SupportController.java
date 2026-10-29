@@ -104,10 +104,10 @@ public class SupportController {
         log.info("stdYear: " + stdYear);
 
         //글 조회 서비스 호출
-        PageResponseDTO pageResponseDTO = supportService.findRegisterByStdNoByGrade(pageRequestDTO, stdYear);
+        // PageResponseDTO pageResponseDTO = supportService.findRegisterByStdNoByGrade(pageRequestDTO, stdYear);
 
-        model.addAttribute("lectureDTOList", pageResponseDTO.getDtoList());
-        model.addAttribute("pageResponseDTO", pageResponseDTO);
+        //model.addAttribute("lectureDTOList", pageResponseDTO.getDtoList());
+        //model.addAttribute("pageResponseDTO", pageResponseDTO);
 
         return "/support/register";
     }
@@ -165,16 +165,16 @@ public class SupportController {
     @GetMapping("/register_list")
     public String registerListByStdNo(@AuthenticationPrincipal UserDetails userDetails, RegisteredPageRequestDTO registeredPageRequestDTO, Model model){
         //학번 조회
-        String stdNo = userDetails.getUsername();
-
-        //글 조회 서비스
-        RegisteredPageResponseDTO registeredPageResponseDTO = supportService.findRegisterByStdNo(registeredPageRequestDTO, stdNo);
-
-        int total = supportService.totalCredit(registeredPageResponseDTO);
-
-        model.addAttribute("registeredDTOList", registeredPageResponseDTO.getDtoList());
-        model.addAttribute("pageResponseDTO", registeredPageResponseDTO);
-        model.addAttribute("total", total);
+//        String stdNo = userDetails.getUsername();
+//
+//        //글 조회 서비스
+//        RegisteredPageResponseDTO registeredPageResponseDTO = supportService.findRegisterByStdNo(registeredPageRequestDTO, stdNo);
+//
+//        int total = supportService.totalCredit(registeredPageResponseDTO);
+//
+//        model.addAttribute("registeredDTOList", registeredPageResponseDTO.getDtoList());
+//        model.addAttribute("pageResponseDTO", registeredPageResponseDTO);
+//        model.addAttribute("total", total);
 
         return "/support/register_list";
     }

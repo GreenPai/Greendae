@@ -23,7 +23,7 @@ public class QSubject extends EntityPathBase<Subject> {
 
     public final NumberPath<Integer> credits = createNumber("credits", Integer.class);
 
-    public final NumberPath<Integer> id = createNumber("id", Integer.class);
+    public final NumberPath<Integer> no = createNumber("no", Integer.class);
 
     public final StringPath title = createString("title");
 

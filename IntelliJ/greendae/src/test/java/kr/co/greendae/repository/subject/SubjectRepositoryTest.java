@@ -32,9 +32,12 @@ class SubjectRepositoryTest {
     SubjectRepository repository;
 
     private static Subject createSubject() {
+
+        log.info(SubjectType.GENERAL.getDescription());
+
         return Subject.builder()
                 .title("자바 프로그래밍")
-                .code("CS101")
+                .code("TT101")
                 .credits(3)
                 .type(SubjectType.MAJOR_REQUIRED)
                 .build();
@@ -50,7 +53,7 @@ class SubjectRepositoryTest {
         em.flush();
         em.clear();
 
-        Optional<Subject> optSubject = repository.findById(savedSubject.getId());
+        Optional<Subject> optSubject = repository.findById(savedSubject.getNo());
 
         log.info(String.valueOf(optSubject.get()));
         Assertions.assertThat(optSubject.get().getTitle()).isEqualTo("자바 프로그래밍");
@@ -65,7 +68,7 @@ class SubjectRepositoryTest {
 
         em.flush();
         em.clear();
-        int id = savedSubject.getId();
+        int id = savedSubject.getNo();
         repository.deleteById(id);
         Optional<Subject> optSubject = repository.findById(id);
 
