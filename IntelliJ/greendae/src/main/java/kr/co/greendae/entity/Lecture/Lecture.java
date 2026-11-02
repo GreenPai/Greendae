@@ -8,12 +8,14 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 과목 강의
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-//@Table(name="Lecture")
 public class Lecture {
 
     /*
@@ -37,7 +39,7 @@ public class Lecture {
     * ----------------------------------------------------
     * */
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proNo")
     private Professor professor;  //담당교수
 
@@ -45,8 +47,8 @@ public class Lecture {
     @JoinColumn(name = "subjectNo", nullable = false)
     private Subject subject;
 
-    private String lecMajor;
-    private String lecClass;
+    private String lecMajor; // 구분. 전공
+    private String lecClass; // 분반 (예: 01분반, 02분반)
 
     private int lecGrade;    //학년
     private int lecCredit;   //학점

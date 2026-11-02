@@ -14,19 +14,4 @@ import java.util.Optional;
 
 public interface LectureRepository extends JpaRepository<Lecture, String>{
 
-    @Query("SELECT l FROM Lecture l WHERE l.lecGrade = :lecGrade")
-    public List<Lecture> findByLecGrade(int lecGrade);
-
-    public List<Lecture> findByLecClassAndLecGrade(String lecClass, int lecGrade);
-
-    public List<Lecture> lecCate(String lecCate);
-
-    public List<Lecture> findByLecClassAndLecCate(String lecClass, String cate);
-
-    public Optional<Lecture> findById(String lecNo); // lecNo로 Lecture 객체 조회
-
-    @Query("SELECT l.lecScheduleStart FROM Register r " +
-            "JOIN Lecture l ON r.lecture.lecNo = l.lecNo " +
-            "WHERE r.lecture.lecNo = :stdNo")
-    List<String> findLectureYearsByStudent(String stdNo);
 }

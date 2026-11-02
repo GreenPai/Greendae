@@ -1,27 +1,29 @@
 package kr.co.greendae.entity.Lecture;
 
 import jakarta.persistence.*;
+import kr.co.greendae.entity.basic.BaseEntity;
 import kr.co.greendae.entity.user.Student;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 /**
  * 수강신청 엔티티 :
  * lecture
  */
-@Data
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="Register")
-public class Register {
+public class Register extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int regNo;
+    private Long regNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "regStdNo", referencedColumnName = "stdNo")
+    @JoinColumn(name = "regStdNo", referencedColumnName = "stdNo", nullable = false)
     private Student student;
 
     /*
@@ -32,39 +34,26 @@ public class Register {
     *   lecRoom  : 강의실
     *   lecName  : 과목명
     *   lecGrade : 학년
-    *   l
     * */
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "regLecNo", referencedColumnName = "lecNo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "regLecNo", referencedColumnName = "lecNo", nullable = false)
     private Lecture lecture;
 
-    private String regYear;
-    private String regSemester;
+    private Integer regYear;
+    private Integer regSemester;
 
-    private String regGradeScore; //A,B,C,D,E
-    private String regAttenScore; // 출석점수
-    private String regMidScore;   // 중간고수 점수
-    private String regFinalScore; // 기말고수 점수
-    private String regEtcScore;   // 기타점수
-    private int regTotalScore;    // 총점
+    @Enumerated(EnumType.STRING)
+    private Grade regGradeScore; // 성적
 
-    @PrePersist
-    public void prePersist(){
-        if(this.regAttenScore == null){
-            this.regAttenScore = "0";
-        }
-        if(this.regMidScore == null){
-            this.regMidScore = "0";
-        }
-        if(this.regFinalScore == null){
-            this.regFinalScore = "0";
-        }
-        if(this.regEtcScore == null){
-            this.regEtcScore = "0";
-        }
-    }
+    @Enumerated(EnumType.STRING)
+    private RegisterStatus status; // 수강 신청 - 신청, 취소
 
+    private BigDecimal regAttenScore;   // 출석 점수
+    private BigDecimal regMidScore;     // 중간고사 점수
+    private BigDecimal regFinalScore;   // 기말고사 점수
+    private BigDecimal regEtcScore;     // 기타 점수
+    private BigDecimal regTotalScore;   // 총점
 
-
+    
 }
