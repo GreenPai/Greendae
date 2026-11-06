@@ -16,7 +16,7 @@ public class Professor {
     @Id
     private String proNo;             //교수번호
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "uid")
     private User user;               //유저
 

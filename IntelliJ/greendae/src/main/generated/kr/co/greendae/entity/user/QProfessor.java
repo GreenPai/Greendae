@@ -58,7 +58,7 @@ public class QProfessor extends EntityPathBase<Professor> {
 
     public QProfessor(Class<? extends Professor> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.department = inits.isInitialized("department") ? new kr.co.greendae.entity.department.QDepartment(forProperty("department")) : null;
+        this.department = inits.isInitialized("department") ? new kr.co.greendae.entity.department.QDepartment(forProperty("department"), inits.get("department")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
     }
 

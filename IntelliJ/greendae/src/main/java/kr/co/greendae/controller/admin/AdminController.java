@@ -144,9 +144,8 @@ public class AdminController {
     }
 
     // 학생 등록 페이지
-    @GetMapping("/student/register")
+    //@GetMapping("/student/register")
     public String student(Model model){
-
 
         // Select 박스를 위한 대학 정보
         List<CollegeDTO>  collegeDTOS = adminService.findAllCollege();
@@ -266,14 +265,7 @@ public class AdminController {
         return "/admin/list/departmentSearch";
     }
 
-    // 학생 리스트 출력
-    @GetMapping("/student/list")
-    public String  studentList(Model model, PageRequestDTO pageRequestDTO){
 
-        PageStudentResponseDTO pageStudentResponseDTO = adminService.findAllStudent(pageRequestDTO);
-        model.addAttribute("pageResponseDTO",pageStudentResponseDTO);
-        return "/admin/list/student";
-    }
 
     // 학생 검색
     @GetMapping("/student/search")
