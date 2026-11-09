@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "departments")
 @Builder
 @Entity
 @Table(name = "College")

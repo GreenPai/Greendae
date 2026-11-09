@@ -82,7 +82,6 @@
                                     <select class="search_select" name="searchType">
                                         <option value="college">대학</option>
                                         <option value="department">학과</option>
-                                        <option value="chair">학과장</option>
                                     </select>
                                     <input type="text" name="keyword" class="search_text" placeholder="검색 키워드 입력">
                                     <input type="submit" class="search_btn" value="검색">
@@ -94,22 +93,20 @@
                         <!-- 학과목록 시작-->
                         <table class="Education_Operations">
                             <thead>
-                                <th style="width: 109px;">학과번호</th>
-                                <th style="width: 190px;">단과대학</th>
-                                <th style="width: 190px;">학과</th>
-                                <th style="width: 109px;">학과장</th>
-                                <th style="width: 163px;">학과 연락처</th>
-                                <th style="width: 109px;">소속 교수 수</th>
-                                <th style="width: 109px;">소속 학생 수</th>
-                                <th style="width: 109px;">개설 강의 수 </th>
+                                <th style="width: 120px;">학과번호</th>
+                                <th style="width: 200px;">단과대학</th>
+                                <th style="width: 200px;">학과</th>
+                                 <th style="width: 200px;">학과 연락처</th>
+                                <th style="width: 120px;">소속 교수 수</th>
+                                <th style="width: 120px;">소속 학생 수</th>
+                                <th style="width: 120px;">개설 강의 수 </th>
                                 </thead>
                             <tbody>
 
                                 <tr th:each="department :${pageResponseDTO.dtoList}">
                                     <td>[[${department.deptNo}]]</td>
-                                    <td>[[${department.college}]]</td>
+                                    <td>[[${department.college.name}]]</td>
                                     <td>[[${department.deptName}]]</td>
-                                    <td>[[${department.deptChair}]]</td>
                                     <td>[[${department.deptHp}]]</td>
                                     <td>[[${department.totalProfessors}]]</td>
                                     <td>[[${department.totalStudents}]]</td>
@@ -133,7 +130,6 @@
                                 <a th:href="@{/admin/departments/list(pg=${pageResponseDTO.end+1})}" class="next">다음</a>
                             </th:block>
                         </div>
-
                     </div>
                 </div>
             </article>
