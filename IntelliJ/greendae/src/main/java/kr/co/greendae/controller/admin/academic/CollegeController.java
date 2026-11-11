@@ -1,7 +1,9 @@
 package kr.co.greendae.controller.admin.academic;
 
 import kr.co.greendae.dto.college.CollegeDTO;
-import kr.co.greendae.service.AdminService;
+import kr.co.greendae.service.admin.AdminService;
+import kr.co.greendae.service.admin.ImageService;
+import kr.co.greendae.service.admin.acacemic.AdCollegeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,10 @@ import java.util.List;
 @RequestMapping("/admin/college")
 public class CollegeController {
 
-    private final AdminService adminService;
+//    private final AdminService adminService;
+    private final AdCollegeService adminService;
+    private final ImageService imageService;
+
 
     // 대학 및 학과 등록 페이지
     @GetMapping("/register")
@@ -45,7 +50,7 @@ public class CollegeController {
         }
 
         // 이미지 등록 서비스 호출
-        adminService.uploadImage(collageDTO);
+        imageService.uploadImage(collageDTO);
 
         adminService.save(collageDTO);
 

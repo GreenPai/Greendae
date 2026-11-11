@@ -73,10 +73,10 @@
                             <table class="department_info">
                                 <tr>
                                     <td>학과번호</td>
-                                    <td> <span class="info_red_txt">고유 2자리 숫자 자동 생성</span></td>
+                                    <td> <span class="info_red_txt">숫자 자동 생성</span></td>
                                     <td>단과대학</td>
                                     <td>
-                                        <select name="college">
+                                        <select name="collegeName">
                                             <option th:each="college : ${collegeDTOS}" th:value="${college.name}">[[${college.name}]]</option>
                                         </select>
                                     </td>

@@ -5,13 +5,12 @@ import kr.co.greendae.dto.college.CollegeDTO;
 import kr.co.greendae.dto.department.*;
 import kr.co.greendae.dto.page.PageRequestDTO;
 import kr.co.greendae.dto.support.LectureDTO;
-import kr.co.greendae.dto.support.StudentDTO;
 import kr.co.greendae.dto.user.PageProfessorResponseDTO;
 import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.ProfessorDTO;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.user.Role;
-import kr.co.greendae.service.AdminService;
+import kr.co.greendae.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,92 +38,91 @@ public class AdminController {
         return "/admin/main";
     }
 
-    // 교수 등록 페이지
-    @GetMapping("/professor/register")
-    public String professor(Model model){
+//    // 교수 등록 페이지
+//    @GetMapping("/professor/register")
+//    public String professor(Model model){
+//
+//
+//        // Select 박스를 위한 대학 정보
+//        List<CollegeDTO>  collegeDTOS = adminService.findAllCollege();
+//        List<DepartmentDTO> departmentDTOS = adminService.findAllDepartmentByName(collegeDTOS.get(0).getName());
+//
+//        //대학 정보
+//        model.addAttribute("collegeDTOS",collegeDTOS);
+//        model.addAttribute("departmentDTOS",departmentDTOS);
+//        return "/admin/register/professor";
+//    }
 
+//    // 교수 등록
+//    @PostMapping("/professor/register")
+//    public String  professor(ProfessorDTO professorDTO, UserDTO userDTO
+//            , @RequestParam("graduationDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate graduationDate,
+//                             @RequestParam("appointmentDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate
+//            , HttpServletRequest req){
+//
+//        // 교수번호 : 연도 + 학과번호 + 순번 자동 조합
+//        String prodNo = String.valueOf(appointmentDate.getYear());
+//
+//
+//        DepartmentDTO departmentDTO = adminService.findDepartmentByName(professorDTO.getDepartmentD());
+//        prodNo += departmentDTO.getDeptNo();
+//
+//        // 비밀번호 추출 (주민번호 뒷자리)
+//        String[] passStr = userDTO.getSsn().split("-");
+//        String pass = passwordEncoder.encode(passStr[1]); ;
+//        userDTO.setPass(pass);
+//        userDTO.setRole(Role.ADMIN);
+//        userDTO.setRegip(req.getRemoteAddr());
+//
+//        // User 테이블에 저장 - code는 교수번호
+//        String code = adminService.registerUser(userDTO, prodNo);
+//
+//        professorDTO.setUid(code);
+//        professorDTO.setProNo(code);
+//        professorDTO.setDeptNo(departmentDTO.getDeptNo());
+//
+//        adminService.registerProfessor(professorDTO, userDTO, departmentDTO);
+//
+//        // 학과에 교수 수 + 1 하기
+//        adminService.CountUpProfessor(departmentDTO);
+//        return "redirect:/admin/professor/register";
+//    }
 
-        // Select 박스를 위한 대학 정보
-        List<CollegeDTO>  collegeDTOS = adminService.findAllCollege();
-        List<DepartmentDTO> departmentDTOS = adminService.findAllDepartmentByName(collegeDTOS.get(0).getName());
+//    // 강의 등록
+//    @GetMapping("/lecture/register")
+//    public String lecture(Model model){
+//
+//        // Select 박스를 위한 대학 정보
+//        List<CollegeDTO>  collegeDTOS = adminService.findAllCollege();
+//        List<DepartmentDTO> departmentDTOS = adminService.findAllDepartmentByName(collegeDTOS.get(0).getName());
+//
+//        //대학 정보
+//        model.addAttribute("collegeDTOS",collegeDTOS);
+//        model.addAttribute("departmentDTOS",departmentDTOS);
+//
+//        return "/admin/register/lecture";
+//    }
 
-        //대학 정보
-        model.addAttribute("collegeDTOS",collegeDTOS);
-        model.addAttribute("departmentDTOS",departmentDTOS);
-        return "/admin/register/professor";
-    }
-
-    // 교수 등록
-    @PostMapping("/professor/register")
-    public String  professor(ProfessorDTO professorDTO, UserDTO userDTO
-            , @RequestParam("graduationDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate graduationDate,
-                             @RequestParam("appointmentDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate appointmentDate
-            , HttpServletRequest req){
-
-        // 교수번호 : 연도 + 학과번호 + 순번 자동 조합
-        String prodNo = String.valueOf(appointmentDate.getYear());
-
-
-        DepartmentDTO departmentDTO = adminService.findDepartmentByName(professorDTO.getDepartmentD());
-        prodNo += departmentDTO.getDeptNo();
-
-        // 비밀번호 추출 (주민번호 뒷자리)
-        String[] passStr = userDTO.getSsn().split("-");
-        String pass = passwordEncoder.encode(passStr[1]); ;
-        userDTO.setPass(pass);
-        userDTO.setRole(Role.ADMIN);
-        userDTO.setRegip(req.getRemoteAddr());
-
-        // User 테이블에 저장 - code는 교수번호
-        String code = adminService.registerUser(userDTO, prodNo);
-
-        professorDTO.setUid(code);
-        professorDTO.setProNo(code);
-        professorDTO.setDeptNo(departmentDTO.getDeptNo());
-
-        adminService.registerProfessor(professorDTO, userDTO, departmentDTO);
-
-        // 학과에 교수 수 + 1 하기
-        adminService.CountUpProfessor(departmentDTO);
-        return "redirect:/admin/professor/register";
-    }
-
-
-    // 강의 등록
-    @GetMapping("/lecture/register")
-    public String lecture(Model model){
-
-        // Select 박스를 위한 대학 정보
-        List<CollegeDTO>  collegeDTOS = adminService.findAllCollege();
-        List<DepartmentDTO> departmentDTOS = adminService.findAllDepartmentByName(collegeDTOS.get(0).getName());
-
-        //대학 정보
-        model.addAttribute("collegeDTOS",collegeDTOS);
-        model.addAttribute("departmentDTOS",departmentDTOS);
-
-        return "/admin/register/lecture";
-    }
-
-    @PostMapping("/lecture/register")
-    public String lecture(LectureDTO lectureDTO){
-
-        // 과목 코드 만들기
-
-        String[] year = lectureDTO.getLecScheduleStart().split("-");
-        String lecNo = year[0];
-
-        DepartmentDTO departmentDTO = adminService.findDepartmentByName(lectureDTO.getLecClass());
-
-        lecNo += departmentDTO.getDeptNo();
-
-        lectureDTO.setLecClass(departmentDTO.getDeptName());
-
-        adminService.registerLecture(lectureDTO, lecNo);
-
-        adminService.CountUpLecture(departmentDTO);
-
-        return "redirect:/admin/lecture/register";
-    }
+//    @PostMapping("/lecture/register")
+//    public String lecture(LectureDTO lectureDTO){
+//
+//        // 과목 코드 만들기
+//
+//        String[] year = lectureDTO.getLecScheduleStart().split("-");
+//        String lecNo = year[0];
+//
+//        DepartmentDTO departmentDTO = adminService.findDepartmentByName(lectureDTO.getLecClass());
+//
+//        lecNo += departmentDTO.getDeptNo();
+//
+//        lectureDTO.setLecClass(departmentDTO.getDeptName());
+//
+//        adminService.registerLecture(lectureDTO, lecNo);
+//
+//        adminService.CountUpLecture(departmentDTO);
+//
+//        return "redirect:/admin/lecture/register";
+//    }
 
     // 대학을 선택하면 관련 학과를 출력
 //    @ResponseBody

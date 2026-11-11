@@ -1,25 +1,20 @@
-package kr.co.greendae.service;
+package kr.co.greendae.service.admin;
 
 import com.querydsl.core.Tuple;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import kr.co.greendae.dto.college.CollegeDTO;
 import kr.co.greendae.dto.department.*;
 import kr.co.greendae.dto.page.PageRequestDTO;
 import kr.co.greendae.dto.support.LectureDTO;
-import kr.co.greendae.dto.support.RegisterDTO;
 import kr.co.greendae.dto.support.StudentDTO;
-import kr.co.greendae.dto.support.pageRegister.PageResponseDTO;
 import kr.co.greendae.dto.user.PageProfessorResponseDTO;
 import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.ProfessorDTO;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.Lecture.Lecture;
-import kr.co.greendae.entity.Lecture.Register;
 import kr.co.greendae.entity.college.College;
 import kr.co.greendae.entity.department.Chairperson;
 import kr.co.greendae.entity.department.Department;
 import kr.co.greendae.entity.user.Professor;
-import kr.co.greendae.entity.user.QStudent;
 import kr.co.greendae.entity.user.Student;
 import kr.co.greendae.entity.user.User;
 import kr.co.greendae.repository.department.ChairPersonRepository;
@@ -35,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,50 +58,50 @@ public class AdminService {
     @Value("${spring.servlet.multipart.location}")
     private String uploadDir;
 
-    // 이미지 등록
-    public CollegeDTO uploadImage(CollegeDTO collageDTO) {
+//    // 이미지 등록
+//    public CollegeDTO uploadImage(CollegeDTO collageDTO) {
+//
+//
+//        java.io.File fileUploadDir = new java.io.File(uploadDir);
+//
+//        if (!fileUploadDir.exists()) {
+//            // 파일 업로드 디렉터리가 존재하지 않으면 생성
+//            fileUploadDir.mkdirs();
+//        }
+//
+//        // 파일 업로드 디렉터리 시스템 경로 구하기
+//        String fileUploadPath = fileUploadDir.getAbsolutePath();
+//
+//        MultipartFile multipartFile = collageDTO.getImage();
+//
+//        if (!multipartFile.isEmpty()) {
+//            String oName = multipartFile.getOriginalFilename();
+//            String ext = oName.substring(oName.lastIndexOf("."));
+//            String sName = UUID.randomUUID().toString() + ext;
+//
+//            // 파일 저장
+//            try {
+//                multipartFile.transferTo(new java.io.File(fileUploadPath, sName));
+//            } catch (IOException e) {
+//                log.error(e.getMessage());
+//            }
+//
+//            collageDTO.setOName(oName);
+//            collageDTO.setSName(sName);
+//
+//        }
+//
+//        return collageDTO;
+//
+//    }
 
 
-        java.io.File fileUploadDir = new java.io.File(uploadDir);
-
-        if (!fileUploadDir.exists()) {
-            // 파일 업로드 디렉터리가 존재하지 않으면 생성
-            fileUploadDir.mkdirs();
-        }
-
-        // 파일 업로드 디렉터리 시스템 경로 구하기
-        String fileUploadPath = fileUploadDir.getAbsolutePath();
-
-        MultipartFile multipartFile = collageDTO.getImage();
-
-        if (!multipartFile.isEmpty()) {
-            String oName = multipartFile.getOriginalFilename();
-            String ext = oName.substring(oName.lastIndexOf("."));
-            String sName = UUID.randomUUID().toString() + ext;
-
-            // 파일 저장
-            try {
-                multipartFile.transferTo(new java.io.File(fileUploadPath, sName));
-            } catch (IOException e) {
-                log.error(e.getMessage());
-            }
-
-            collageDTO.setOName(oName);
-            collageDTO.setSName(sName);
-
-        }
-
-        return collageDTO;
-
-    }
-
-
-    public void save(CollegeDTO collageDTO) {
-
-        College college = modelMapper.map(collageDTO, College.class);
-        collegeRepository.save(college);
-
-    }
+//    public void save(CollegeDTO collageDTO) {
+//
+//        College college = modelMapper.map(collageDTO, College.class);
+//        collegeRepository.save(college);
+//
+//    }
 
     public int getMaxDepNo() {
         Optional<Department> optDepartment = departmentRepository.findFirstByOrderByDeptNoDesc();

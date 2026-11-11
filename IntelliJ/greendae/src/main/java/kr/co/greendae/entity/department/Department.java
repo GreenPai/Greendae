@@ -14,7 +14,7 @@ import lombok.*;
 public class Department {
     // 부서 테이블
 
-    @Id
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int deptNo;            // 학과번호
 
     /*

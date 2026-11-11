@@ -3,7 +3,9 @@ package kr.co.greendae.controller.admin.academic;
 import kr.co.greendae.dto.department.DepartmentDTO;
 import kr.co.greendae.dto.department.PageDepartmentRequestDTO;
 import kr.co.greendae.dto.department.PageDepartmentResponseDTO;
-import kr.co.greendae.service.AdminService;
+import kr.co.greendae.service.admin.AdminService;
+import kr.co.greendae.service.admin.acacemic.AdCollegeService;
+import kr.co.greendae.service.admin.acacemic.AdDepartmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +22,7 @@ import java.util.List;
 @RequestMapping("/admin/department")
 public class DepartmentController {
 
-    private final AdminService adminService;
+    private final AdDepartmentService adminService;
 
     @GetMapping("/list")
     public String departmentList(Model model, PageDepartmentRequestDTO pageDepartmentRequestDTO){
@@ -40,21 +42,20 @@ public class DepartmentController {
                              @RequestParam("date")
                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
 
-        log.info("register 실행합니다.");
+        log.info("학과 정보 등록 컨트롤러 실행합니다.");
 
         departmentDTO.setEstablishedYear(String.valueOf(date.getYear()));
-//
-//        if(!departmentDTO.isValid()){
-//            log.info("학과 등록에 실패했습니다.");
-//            return "redirect:/admin/college/register";
-//        }
-//
-//        // 최신 학과번호 추출
-//        int deptNo = adminService.getMaxDepNo();
-//        departmentDTO.setDeptNo(deptNo);
-//
-//        // 등록
-//        adminService.register(departmentDTO);
+
+        log.info("학과 DTO 검증 -- ");
+        if(!departmentDTO.isValid()){
+            log.info("학과 등록에 실패했습니다. DTO 문제");
+            return "redirect:/admin/college/register";
+        }
+
+        log.info("대학 정보 검증 -- ");
+
+        // 등록
+        adminService.register(departmentDTO);
 
         return "redirect:/admin/college/register";
     }

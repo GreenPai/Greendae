@@ -8,7 +8,7 @@ import kr.co.greendae.dto.support.StudentDTO;
 import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.user.Role;
-import kr.co.greendae.service.AdminService;
+import kr.co.greendae.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
