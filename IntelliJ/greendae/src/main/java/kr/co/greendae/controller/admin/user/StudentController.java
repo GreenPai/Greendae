@@ -1,4 +1,4 @@
-package kr.co.greendae.controller.admin;
+package kr.co.greendae.controller.admin.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.greendae.dto.college.CollegeDTO;
@@ -9,6 +9,7 @@ import kr.co.greendae.dto.user.PageStudentResponseDTO;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.user.Role;
 import kr.co.greendae.service.admin.AdminService;
+import kr.co.greendae.service.admin.acacemic.AdStudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,7 @@ import java.util.List;
 public class StudentController {
 
     private final AdminService adminService;
+    private final AdStudentService studentService;
     private final PasswordEncoder passwordEncoder;
 
     // 학생 리스트 페이지
@@ -83,4 +85,16 @@ public class StudentController {
 
         return "redirect:/admin/student/register";
     }
+
+    // 학생 검색
+    @GetMapping("/search")
+    public String search(PageRequestDTO pageRequestDTO, Model model) {
+
+        // 서비스 호출
+        PageStudentResponseDTO pageResponseDTO = adminService.searchAllStudent(pageRequestDTO);
+        model.addAttribute("pageResponseDTO", pageResponseDTO);
+
+        return "/admin/list/studentSearch";
+    }
+
 }

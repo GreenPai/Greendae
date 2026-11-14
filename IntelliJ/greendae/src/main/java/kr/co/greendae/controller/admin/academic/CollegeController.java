@@ -1,7 +1,6 @@
 package kr.co.greendae.controller.admin.academic;
 
 import kr.co.greendae.dto.college.CollegeDTO;
-import kr.co.greendae.service.admin.AdminService;
 import kr.co.greendae.service.admin.ImageService;
 import kr.co.greendae.service.admin.acacemic.AdCollegeService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ import java.util.List;
 public class CollegeController {
 
 //    private final AdminService adminService;
-    private final AdCollegeService adminService;
+    private final AdCollegeService collegeService;
     private final ImageService imageService;
 
 
@@ -29,7 +28,7 @@ public class CollegeController {
     @GetMapping("/register")
     public String college(Model model){
 
-        List<CollegeDTO> collegeDTOS = adminService.findAllCollege();
+        List<CollegeDTO> collegeDTOS = collegeService.findAllCollege();
         model.addAttribute("collegeDTOS",collegeDTOS);
 
         //List<ChairPersonDTO> chairPersonDTOS = adminService.findAllChairPerson();
@@ -52,7 +51,7 @@ public class CollegeController {
         // 이미지 등록 서비스 호출
         imageService.uploadImage(collageDTO);
 
-        adminService.save(collageDTO);
+        collegeService.save(collageDTO);
 
         return "redirect:/admin/college/register";
     }

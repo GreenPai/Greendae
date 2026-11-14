@@ -85,4 +85,16 @@ public class AdDepartmentService {
         return departmentDTOS;
     }
 
+    /**
+     * 부서 이름 찾기
+     */
+    public DepartmentDTO findDepartmentById(int id) {
+        // 수정 이름아님 -> PK로 찾기
+        Department department = departmentRepository.findById(id).get();
+        return modelMapper.map(department, DepartmentDTO.class);
+    }
+
+
+    
+
 }

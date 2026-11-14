@@ -248,7 +248,6 @@ public class AdminService {
      * */
 
     public void CountUpProfessor(DepartmentDTO departmentDTO) {
-
         departmentDTO.setTotalProfessors(departmentDTO.getTotalProfessors() + 1);
         Department department = modelMapper.map(departmentDTO, Department.class);
         departmentRepository.save(department);
@@ -412,35 +411,6 @@ public class AdminService {
                 .build();
 
     }
-
-    public PageProfessorResponseDTO searchAllProfessor(PageRequestDTO pageRequestDTO) {
-
-        // 페이징 처리를 위한 pageable 객체 생성
-        Pageable pageable = pageRequestDTO.getPageable("no");
-
-        Page<Tuple> pageObject = professorRepository.selectProfessorForSearch(pageRequestDTO, pageable);
-
-        List<ProfessorDTO> professorDTOS = pageObject.getContent().stream().map(tuple -> {
-
-            Professor professor = tuple.get(0, Professor.class);
-            ProfessorDTO professorDTO = modelMapper.map(professor, ProfessorDTO.class);
-
-            return professorDTO;
-
-        }).toList();
-
-        int total = (int) pageObject.getTotalElements();
-
-        return PageProfessorResponseDTO
-                .builder()
-                .pageRequestDTO(pageRequestDTO)
-                .dtoList(professorDTOS)
-                .total(total)
-                .build();
-
-
-    }
-
 
     public PageLectureResponseDTO allLecture(PageRequestDTO pageRequestDTO) {
 

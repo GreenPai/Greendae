@@ -1,12 +1,16 @@
-package kr.co.greendae.controller.admin.professor;
+package kr.co.greendae.controller.admin.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.greendae.dto.college.CollegeDTO;
 import kr.co.greendae.dto.department.DepartmentDTO;
+import kr.co.greendae.dto.page.PageRequestDTO;
+import kr.co.greendae.dto.user.PageProfessorResponseDTO;
 import kr.co.greendae.dto.user.ProfessorDTO;
 import kr.co.greendae.dto.user.UserDTO;
 import kr.co.greendae.entity.user.Role;
 import kr.co.greendae.service.admin.AdminService;
+import kr.co.greendae.service.admin.acacemic.AdDepartmentService;
+import kr.co.greendae.service.admin.professor.AdProfessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,6 +32,9 @@ import java.util.List;
 public class ProfessorController {
 
     private final AdminService adminService;
+    private final AdDepartmentService departmentService;
+    private final AdProfessorService professorService;
+
     private final PasswordEncoder passwordEncoder;
 
     // 교수 등록 페이지
@@ -54,15 +61,16 @@ public class ProfessorController {
         // 교수번호 : 연도 + 학과번호 + 순번 자동 조합
         String prodNo = String.valueOf(appointmentDate.getYear());
 
+        int deptNo = Integer.parseInt(professorDTO.getDepartmentD());
 
-        DepartmentDTO departmentDTO = adminService.findDepartmentByName(professorDTO.getDepartmentD());
+        DepartmentDTO departmentDTO = departmentService.findDepartmentById(deptNo);
+
         prodNo += departmentDTO.getDeptNo();
-
         // 비밀번호 추출 (주민번호 뒷자리)
         String[] passStr = userDTO.getSsn().split("-");
         String pass = passwordEncoder.encode(passStr[1]); ;
         userDTO.setPass(pass);
-        userDTO.setRole(Role.ADMIN);
+        userDTO.setRole(Role.PROFESSOR);
         userDTO.setRegip(req.getRemoteAddr());
 
         // User 테이블에 저장 - code는 교수번호
@@ -78,6 +86,18 @@ public class ProfessorController {
         adminService.CountUpProfessor(departmentDTO);
         return "redirect:/admin/professor/register";
     }
+
+    // 교수 검색(관리자 교수 목록 리스트 검색)
+    @GetMapping("/search")
+    public String professorSearch(PageRequestDTO pageRequestDTO, Model model){
+
+        // 서비스 호출
+        PageProfessorResponseDTO pageResponseDTO = professorService.searchAllProfessor(pageRequestDTO);
+        model.addAttribute("pageResponseDTO",pageResponseDTO);
+
+        return "/admin/list/professorSearch";
+    }
+
 
 
 

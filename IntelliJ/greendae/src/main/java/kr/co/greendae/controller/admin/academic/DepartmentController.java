@@ -3,8 +3,6 @@ package kr.co.greendae.controller.admin.academic;
 import kr.co.greendae.dto.department.DepartmentDTO;
 import kr.co.greendae.dto.department.PageDepartmentRequestDTO;
 import kr.co.greendae.dto.department.PageDepartmentResponseDTO;
-import kr.co.greendae.service.admin.AdminService;
-import kr.co.greendae.service.admin.acacemic.AdCollegeService;
 import kr.co.greendae.service.admin.acacemic.AdDepartmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,13 +20,13 @@ import java.util.List;
 @RequestMapping("/admin/department")
 public class DepartmentController {
 
-    private final AdDepartmentService adminService;
+    private final AdDepartmentService departmentService;
 
     @GetMapping("/list")
     public String departmentList(Model model, PageDepartmentRequestDTO pageDepartmentRequestDTO){
 
         // 전체 학과 조회 서비스 호출(JPA)
-        PageDepartmentResponseDTO pageDepartmentResponseDTO = adminService.findAllDepartment(pageDepartmentRequestDTO);
+        PageDepartmentResponseDTO pageDepartmentResponseDTO = departmentService.findAllDepartment(pageDepartmentRequestDTO);
 
         System.out.println("--------");
         System.out.println("pageDepartmentResponseDTO = " + pageDepartmentResponseDTO);
@@ -55,7 +53,7 @@ public class DepartmentController {
         log.info("대학 정보 검증 -- ");
 
         // 등록
-        adminService.register(departmentDTO);
+        departmentService.register(departmentDTO);
 
         return "redirect:/admin/college/register";
     }
@@ -64,11 +62,16 @@ public class DepartmentController {
      * API
      */
 
+    /**
+     * 학생 학적정보 입력 - 입학학과 정보 출력 
+     */
     // 대학을 선택하면 관련 학과를 출력
     @ResponseBody
     @GetMapping("/api/list")
     public List<DepartmentDTO> departmentList(@RequestParam("college") String college){
-        List<DepartmentDTO> departmentDTOS = adminService.findAllDepartmentByName(college);
+
+        log.info( "college : " + "관련 학과를 출력 합니다.");
+        List<DepartmentDTO> departmentDTOS = departmentService.findAllDepartmentByName(college);
         return departmentDTOS;
     }
 }

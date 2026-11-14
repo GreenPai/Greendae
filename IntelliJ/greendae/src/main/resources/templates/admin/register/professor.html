@@ -21,7 +21,7 @@
                     // 기존 학과 옵션 초기화
                     selectD.innerHTML =  '<option value="">학과 선택</option>';
 
-                    fetch(`/admin/department/list?college=`+encodeURIComponent(college))
+                    fetch(`/admin/department/api/list?college=`+encodeURIComponent(college))
                         .then(response => response.json())
                         .then(data => {
 
